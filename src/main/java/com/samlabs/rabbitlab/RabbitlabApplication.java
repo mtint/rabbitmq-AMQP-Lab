@@ -7,13 +7,15 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
+@EnableScheduling
 public class RabbitlabApplication {
 
-    private static final String TIPS_EXCHANGE_NAME = "tips_exchange";
-    private static final String DEFAULT_PARSING_QUEUE = "default_parsing_que";
-    private static final String ROUTING_KEY = "tips_key";
+    public static final String TIPS_EXCHANGE_NAME = "tips_exchange";
+    public static final String DEFAULT_PARSING_QUEUE = "default_parsing_que";
+    public static final String ROUTING_KEY = "tips_key";
 
     @Bean
     public TopicExchange tipsExchange(){

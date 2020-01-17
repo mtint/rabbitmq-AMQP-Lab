@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 public class PracticalMessage implements Serializable {
 
-    private final String text;
-    private final int priority;
-    private final boolean secret;
+    private String text;
+    private int priority;
+    private boolean secret;
+
+    public PracticalMessage() {
+    }
 
     public PracticalMessage(String text, int priority, boolean secret) {
         this.text = text;

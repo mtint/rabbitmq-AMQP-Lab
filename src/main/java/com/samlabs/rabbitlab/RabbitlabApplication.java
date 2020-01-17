@@ -4,6 +4,9 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +33,19 @@ public class RabbitlabApplication {
 	@Bean
 	public Binding queueToExchangeBinding(){
     	return BindingBuilder.bind(defaultParsingQueue()).to(tipsExchange()).with(ROUTING_KEY);
+	}
+
+	@Bean
+	public Jackson2JsonMessageConverter producerMessageConverter(){
+    	return new Jackson2JsonMessageConverter();
+	}
+
+	@Bean
+	public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory){
+    	RabbitTemplate rabbitTemplate = new RabbitTemplate();
+    	rabbitTemplate.setConnectionFactory(connectionFactory);
+    	rabbitTemplate.setMessageConverter(producerMessageConverter());
+    	return rabbitTemplate;
 	}
 
     public static void main(String[] args) {

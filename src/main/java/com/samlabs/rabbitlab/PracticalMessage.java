@@ -2,7 +2,7 @@ package com.samlabs.rabbitlab;
 
 import java.io.Serializable;
 
-public class PracticalMessage implements Serializable {
+public class PracticalMessage {
 
     private String text;
     private int priority;

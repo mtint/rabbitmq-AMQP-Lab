@@ -36,7 +36,7 @@ public class RabbitlabApplication {
 	}
 
 	@Bean
-	public Jackson2JsonMessageConverter producerMessageConverter(){
+	public Jackson2JsonMessageConverter messageConverter(){
     	return new Jackson2JsonMessageConverter();
 	}
 
@@ -44,7 +44,7 @@ public class RabbitlabApplication {
 	public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory){
     	RabbitTemplate rabbitTemplate = new RabbitTemplate();
     	rabbitTemplate.setConnectionFactory(connectionFactory);
-    	rabbitTemplate.setMessageConverter(producerMessageConverter());
+    	rabbitTemplate.setMessageConverter(messageConverter());
     	return rabbitTemplate;
 	}
 

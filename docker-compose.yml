@@ -2,7 +2,7 @@ version: "2"
 
 services:
   rabbitmq:
-    image: 3.7-alpine
+    image: rabbitmq:3.7-alpine
     hostname: rabbitmq
     ports:
-    - "5672:56 72"
+    - "5662:5662"
